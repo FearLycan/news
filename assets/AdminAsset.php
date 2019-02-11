@@ -21,9 +21,12 @@ class AdminAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/font-awesome.min.css',
+        'css/admin/sb-admin.css',
+        'css/admin/style.css',
         'css/site.css',
     ];
     public $js = [
+        'js/admin/bootstrap.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
