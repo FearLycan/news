@@ -114,6 +114,9 @@ AdminAsset::register($this);
                 <li class="<?= Yii::$app->controller->id == 'category' ? 'active' : 'no' ?>">
                     <a href="<?= Url::to(['category/index']) ?>"><i class="fa fa-tag"></i> Categories</a>
                 </li>
+                <li class="<?= Yii::$app->controller->id == 'post' ? 'active' : 'no' ?>">
+                    <a href="<?= Url::to(['post/index']) ?>"><i class="fa fa-bars"></i> Posts</a>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
