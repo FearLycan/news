@@ -13,18 +13,6 @@ use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 
 AdminAsset::register($this);
-
-$nails = [
-    'category', 'tag', 'item'
-];
-
-$system = [
-    'visitor'
-];
-
-$image = [
-    'image', 'valuation'
-]
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -123,38 +111,8 @@ $image = [
                 <li class="<?= Yii::$app->controller->id == 'default' ? 'active' : 'no' ?>">
                     <a href="<?= Url::to(['/admin']) ?>"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                 </li>
-                <li class="<?= Yii::$app->controller->id == 'product' ? 'active' : 'no' ?>">
-                    <a href="<?= Url::to(['product/index']) ?>"><i class="fa fa-list"></i> Products</a>
-                </li>
                 <li class="<?= Yii::$app->controller->id == 'category' ? 'active' : 'no' ?>">
                     <a href="<?= Url::to(['category/index']) ?>"><i class="fa fa-tag"></i> Categories</a>
-                </li>
-                <li class="<?= Yii::$app->controller->id == 'member' ? 'active' : 'no' ?>">
-                    <a href="<?= Url::to(['member/index']) ?>"><i class="fa fa-users"></i> Members</a>
-                </li>
-                <li>
-                    <a href="javascript:;" data-toggle="collapse" data-target="#image">
-                        <i class="fa fa-picture-o" aria-hidden="true"></i> Images <i
-                                class="fa fa-fw fa-caret-down"></i></a>
-                    <ul id="image"
-                        class="<?= in_array(Yii::$app->controller->id, $image) ? 'collapse in' : 'collapse' ?>">
-                        <li class="<?= Yii::$app->controller->action->id == 'index' ? 'active' : 'no' ?>">
-                            <a href="<?= Url::to(['/admin/image']) ?>">
-                                <i class="fa fa-list" aria-hidden="true"></i> Images List
-                            </a>
-                        </li>
-                        <li class="<?= Yii::$app->controller->action->id == 'pending' ? 'active' : 'no' ?>">
-                            <a href="<?= Url::to(['image/valuation']) ?>">
-                                <i class="fa fa-check-square-o" aria-hidden="true"></i> Valuation
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="<?= Yii::$app->controller->id == 'product-url' ? 'active' : 'no' ?>">
-                    <a href="<?= Url::to(['product-url/index']) ?>"><i class="fa fa-link"></i> URLs</a>
-                </li>
-                <li class="<?= Yii::$app->controller->id == 'system-config' ? 'active' : 'no' ?>">
-                    <a href="<?= Url::to(['system-config/index']) ?>"><i class="fa fa-cogs"></i> System Config</a>
                 </li>
             </ul>
         </div>
