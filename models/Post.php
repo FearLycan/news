@@ -15,6 +15,7 @@ use yii\db\ActiveRecord;
  * @property string $slug
  * @property string $description
  * @property string $content
+ * @property string $token
  * @property int $status
  * @property int $author_id
  * @property int $category_id
@@ -68,7 +69,7 @@ class Post extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'slug', 'author_id', 'category_id'], 'required'],
-            [['content'], 'string'],
+            [['content', 'token'], 'string'],
             [['status', 'author_id', 'category_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title', 'slug', 'description'], 'string', 'max' => 255],
@@ -140,5 +141,20 @@ class Post extends \yii\db\ActiveRecord
             static::STATUS_ACTIVE,
             static::STATUS_INACTIVE,
         ];
+    }
+
+    public static function generateUniqueRandomString($n = 32)
+    {
+        $token = Yii::$app->getSecurity()->generateRandomString($n);
+
+        $post = static::find()
+            ->where(['token' => $token])
+            ->one();
+
+        if (empty($post)) {
+            return $token;
+        } else {
+            return static::generateUniqueRandomString();
+        }
     }
 }

@@ -22,6 +22,7 @@ class CategoryForm extends Category
         return [
             [['name', 'status'], 'required'],
             [['description'], 'string'],
+            [['parent_id'], 'integer'],
             [['status'], 'in', 'range' => array_keys(self::getStatuses())],
             [['name'], 'string', 'max' => 255],
         ];

@@ -1,8 +1,10 @@
 <?php
 
 use app\modules\admin\models\Category;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\Category */
@@ -14,7 +16,7 @@ use yii\widgets\ActiveForm;
 
         <?php $form = ActiveForm::begin(); ?>
 
-        <div class="col-md-10">
+        <div class="col-md-7">
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
         </div>
 
@@ -23,6 +25,19 @@ use yii\widgets\ActiveForm;
                 ->dropDownList(
                     Category::getStatusNames()
                 ); ?>
+        </div>
+
+        <div class="col-md-3">
+            <?= $form->field($model, 'parent_id')->widget(Select2::classname(), [
+                'data' => ArrayHelper::map(Category::find()->all(), 'id', 'name'),
+                'options' => ['placeholder' => 'Rodzic'],
+                'theme' => Select2::THEME_KRAJEE,
+                'size' => Select2::MEDIUM,
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]); ?>
+
         </div>
 
 

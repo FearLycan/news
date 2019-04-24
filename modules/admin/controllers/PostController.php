@@ -67,7 +67,11 @@ class PostController extends Controller
     {
         $model = new PostForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->token = Post::generateUniqueRandomString();
+
+            $model->save();
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

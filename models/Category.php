@@ -14,6 +14,8 @@ use yii\db\ActiveRecord;
  * @property string $name
  * @property string $slug
  * @property string $description
+ * @property string $children
+ * @property string $parent_id
  * @property int $status
  * @property int $author_id
  * @property string $created_at
@@ -26,6 +28,8 @@ class Category extends ActiveRecord
     //statusy
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 1;
+
+    const MAIN_CATEGORY = 0;
 
     /**
      * {@inheritdoc}
@@ -65,8 +69,8 @@ class Category extends ActiveRecord
     {
         return [
             [['name', 'slug', 'author_id'], 'required'],
-            [['description'], 'string'],
-            [['status', 'author_id'], 'integer'],
+            [['description', 'children'], 'string'],
+            [['status', 'author_id', 'parent_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'slug'], 'string', 'max' => 255],
             [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['author_id' => 'id']],
@@ -83,6 +87,8 @@ class Category extends ActiveRecord
             'name' => 'Name',
             'slug' => 'Slug',
             'description' => 'Description',
+            'parent_id' => 'Parent ID',
+            'children' => 'Children',
             'status' => 'Status',
             'author_id' => 'Author ID',
             'created_at' => 'Created At',
